@@ -19,7 +19,6 @@ public class SpringConfig {
         this.datasource = datasource;
     }
 
-
     @Bean
     public MemberService memberService() {
         return new MemberService(memberRepository());
@@ -27,6 +26,7 @@ public class SpringConfig {
 
     @Bean
     public MemberRepository memberRepository() {
+        //  OCP (Open-Closed Princlple) 개방 폐쇄 원칙
         //       return new MemoryMemberRepository();
         return new JdbcMemberRepository(datasource);
     }

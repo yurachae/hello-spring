@@ -30,7 +30,7 @@ public class JdbcMemberRepository implements MemberRepository{
             pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             pstmt.setString(1, member.getName());
-            pstmt.execute();
+            pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
 
             if(rs.next()){
@@ -116,7 +116,7 @@ public class JdbcMemberRepository implements MemberRepository{
             rs = pstmt.executeQuery();
 
             List<Member> members =new ArrayList<>();
-            if(rs.next()){
+            while(rs.next()){
                 Member member = new Member();
                 member.setId(rs.getLong("id"));
                 member.setName(rs.getString("name"));
@@ -151,7 +151,7 @@ public class JdbcMemberRepository implements MemberRepository{
         }
         try{
             if(conn != null){
-                conn.close();
+                close(conn);
             }
         }catch(SQLException e){
             e.printStackTrace();
