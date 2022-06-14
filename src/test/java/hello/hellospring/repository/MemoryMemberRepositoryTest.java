@@ -8,6 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
+
 public class MemoryMemberRepositoryTest {
 
     MemoryMemberRepository repository;
